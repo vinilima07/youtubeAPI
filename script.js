@@ -2,6 +2,10 @@
 //const SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
 const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest"];
 const API_KEY = 'AIzaSyAONVephJiOij7ryDiKQ-_RZ6p6Wvi4sLQ';
+const PL_PODCAST = 'PLmSkFzJxyNCIpVdhtdl5WBxnca7xwg3rM';
+const PL_REVIEW = 'PLmSkFzJxyNCIi21LboIt_SblqXuvnin9F';
+const PL_GAMEPLAY = 'PLmSkFzJxyNCJdVQ4mZ_sz7O6dFnHCYGz8';
+
 
 function start() {
   console.log('inicializando');

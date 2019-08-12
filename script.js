@@ -6,6 +6,9 @@ const PL_PODCAST = 'PLmSkFzJxyNCIpVdhtdl5WBxnca7xwg3rM';
 const PL_REVIEW = 'PLmSkFzJxyNCIi21LboIt_SblqXuvnin9F';
 const PL_GAMEPLAY = 'PLmSkFzJxyNCJdVQ4mZ_sz7O6dFnHCYGz8';
 
+var pl_podcastR;
+var pl_reviewR;
+var pl_gameplayR;
 
 function start() {
   console.log('inicializando');
@@ -16,20 +19,56 @@ function start() {
     //scope: SCOPES
   }).then(function(){
 
-    console.log('inicializado');
+    console.log('inicializado req 1');
     console.log('executando');
     return gapi.client.youtube.playlistItems.list({
-      playlistId: 'PLmSkFzJxyNCIi21LboIt_SblqXuvnin9F',
+      playlistId: PL_PODCAST,
       part: 'snippet',
       maxResults: 50 
     });
 
   }).then(function(response){
-      console.log('sucessifuly');
-      console.log(response);
-      console.log(response.result.items[0].snippet.title);
+    console.log(response);
+    pl_podcastR = response.result;
+    console.log('sucessifuly req 1:podcast');
+
   }, function(reason){
       console.log('error'+reason);
+
+  }).then(function(){
+
+    console.log('inicializado req 2');
+
+    return gapi.client.youtube.playlistItems.list({
+      playlistId: PL_REVIEW,
+      part: 'snippet',
+      maxResults: 50 
+    });
+
+    }).then(function(response){
+      console.log(response);
+      pl_reviewR = response.result;
+      console.log('sucessifuly req 2:review');
+
+    }, function(reason){
+        console.log('error'+reason);
+
+    }).then(function(){
+      console.log('inicializado req 3');
+
+      return gapi.client.youtube.playlistItems.list({
+        playlistId: PL_GAMEPLAY,
+        part: 'snippet',
+        maxResults: 50 
+      });
+
+    }).then(function(response){
+      pl_gameplayR = response.result;
+      console.log('sucessifuly req 3:gameplay');
+
+    }, function(reason){
+        console.log('error'+reason);
+
   });
 
 }
